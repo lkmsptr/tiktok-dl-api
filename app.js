@@ -1,7 +1,9 @@
 const express = require("express");
 const getData = require("./src/getData");
+const cors = require("cors");
 const app = express();
 
+app.use(cors());
 app.use(express.urlencoded());
 app.use(express.json());
 
