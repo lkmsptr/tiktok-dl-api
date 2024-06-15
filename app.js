@@ -1,7 +1,8 @@
 const express = require("express");
-const getData = require("./src/getData");
+const Api = require("./src/getData");
 const cors = require("cors");
 const app = express();
+const api = new Api();
 
 app.use(cors());
 app.use(express.urlencoded());
@@ -16,7 +17,7 @@ app.post("/api/tiktok", async (req, res) => {
     }
 
     // Panggil fungsi getData untuk mendapatkan data video TikTok
-    const data = await getData(url);
+    const data = await api.sstik(url);
     return res.json(data);
   } catch (error) {
     return res.status(500).json({ error: "Internal Server Error" });
