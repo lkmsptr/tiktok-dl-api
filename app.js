@@ -50,8 +50,6 @@ app.post("/api/youtube/convert", async (req, res) => {
   try {
     const vid = req.body.vid;
     const key = req.body.key;
-    console.log(key);
-    console.log(vid);
     if (!vid) {
       return res.status(400).json({ error: "key or vid is required" });
     }
