@@ -48,7 +48,8 @@ app.post("/api/youtube", async (req, res) => {
 
 app.post("/api/youtube/convert", async (req, res) => {
   try {
-    const { key, vid } = req.body;
+    const vid = req.body.vid;
+    const key = req.body.key;
     console.log(key);
     console.log(vid);
     if (!vid) {
