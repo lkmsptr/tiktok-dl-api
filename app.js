@@ -49,7 +49,11 @@ app.post("/api/youtube", async (req, res) => {
 app.post("/api/youtube/convert", async (req, res) => {
   try {
     const { key, vid } = req.body;
-    if (!vid || !key) {
+    if (!vid) {
+      return res.status(400).json({ error: "key or vid is required" });
+    }
+
+    if (!key) {
       return res.status(400).json({ error: "key or vid is required" });
     }
 
