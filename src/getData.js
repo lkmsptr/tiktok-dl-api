@@ -98,6 +98,73 @@ class Scraper {
     };
     return result;
   };
+  y2mate = async (url) => {
+    const responseData = await axios.post(
+      "https://id-y2mate.com/mates/analyzeV2/ajax",
+      new URLSearchParams({
+        k_query: url,
+        k_page: "home",
+        hl: "",
+        q_auto: "0",
+      }),
+      {
+        headers: {
+          authority: "id-y2mate.com",
+          accept: "*/*",
+          "accept-language": "en-US,en;q=0.9",
+          "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+          cookie:
+            "_ga_79G1567X4W=GS1.1.1718543086.1.0.1718543086.0.0.0; _ga=GA1.1.349236730.1718543086",
+          origin: "https://id-y2mate.com",
+          referer: "https://id-y2mate.com/",
+          "sec-ch-ua":
+            '"Chromium";v="116", "Not)A;Brand";v="24", "Google Chrome";v="116"',
+          "sec-ch-ua-mobile": "?0",
+          "sec-ch-ua-platform": '"macOS"',
+          "sec-fetch-dest": "empty",
+          "sec-fetch-mode": "cors",
+          "sec-fetch-site": "same-origin",
+          "user-agent":
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36",
+          "x-requested-with": "XMLHttpRequest",
+        },
+      }
+    );
+    return responseData.data;
+  };
+
+  y2mateConvert = async (vid, key) => {
+    const responseConvert = await axios.post(
+      "https://id-y2mate.com/mates/convertV2/index",
+      new URLSearchParams({
+        vid: vid,
+        k: key,
+      }),
+      {
+        headers: {
+          authority: "id-y2mate.com",
+          accept: "*/*",
+          "accept-language": "en-US,en;q=0.9",
+          "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+          cookie:
+            "_ga=GA1.1.349236730.1718543086; _ga_79G1567X4W=GS1.1.1718543086.1.1.1718543097.0.0.0",
+          origin: "https://id-y2mate.com",
+          referer: "https://id-y2mate.com/youtube/CL9InFVBJ20",
+          "sec-ch-ua":
+            '"Chromium";v="116", "Not)A;Brand";v="24", "Google Chrome";v="116"',
+          "sec-ch-ua-mobile": "?0",
+          "sec-ch-ua-platform": '"macOS"',
+          "sec-fetch-dest": "empty",
+          "sec-fetch-mode": "cors",
+          "sec-fetch-site": "same-origin",
+          "user-agent":
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36",
+          "x-requested-with": "XMLHttpRequest",
+        },
+      }
+    );
+    return responseConvert.data;
+  };
 }
 
 module.exports = Scraper;
