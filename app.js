@@ -32,13 +32,19 @@ app.post("/api/tiktok", async (req, res) => {
 // Endpoint untuk permintaan POST Youtube
 app.post("/api/youtube", async (req, res) => {
   try {
-    const { url } = req.body;
+    const { url, ftype } = req.body;
+
     if (!url) {
       return res.status(400).json({ error: "url is required" });
     }
 
+    if (!ftype) {
+      return res.status(400).json({ error: "format type is required" });
+    }
+
     // Panggil fungsi getData untuk mendapatkan data video TikTok
-    const data = await api.y2mate(url);
+    const data = await api.y2mate2(url, ftype);
+
     return res.json(data);
   } catch (error) {
     console.log(error);
@@ -46,20 +52,36 @@ app.post("/api/youtube", async (req, res) => {
   }
 });
 
-app.post("/api/youtube/convert", async (req, res) => {
+app.post("/api/youtube/task", async (req, res) => {
   try {
-    const vid = req.body.vid;
-    const key = req.body.key;
-    if (!vid) {
-      return res.status(400).json({ error: "key or vid is required" });
-    }
-
-    if (!key) {
+    if (!req.body.taskId) {
       return res.status(400).json({ error: "key or vid is required" });
     }
 
     // Panggil fungsi getData untuk mendapatkan data video TikTok
-    const data = await api.y2mateConvert(vid, key);
+    const data = await api.task(req.body.taskId);
+
+    return res.json(data);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+app.post("/api/youtube/get-hash", async (req, res) => {
+  try {
+    const jwt = req.body.jwt;
+    const hash = req.body.hash;
+    if (!jwt) {
+      return res.status(400).json({ error: "jwt is required" });
+    }
+
+    if (!hash) {
+      return res.status(400).json({ error: "hash vid is required" });
+    }
+
+    // Panggil fungsi getData untuk mendapatkan data video TikTok
+    const data = await api.getHash(jwt, hash);
     return res.json(data);
   } catch (error) {
     return res.status(500).json({ error: "Internal Server Error" });

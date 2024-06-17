@@ -163,6 +163,96 @@ class Scraper {
     );
     return response.data;
   };
+
+  y2mate2 = async (url, ftype) => {
+    const responseHash = await axios.post(
+      "https://master-cdn.dl-api.com/api/json",
+      {
+        ftype: ftype,
+        url: url,
+      },
+      {
+        headers: {
+          authority: "master-cdn.dl-api.com",
+          accept: "application/json",
+          "accept-language": "en-US,en;q=0.9",
+          "content-type": "application/json",
+          origin: "https://apimate.net",
+          referer: "https://apimate.net/",
+          "sec-ch-ua":
+            '"Chromium";v="116", "Not)A;Brand";v="24", "Google Chrome";v="116"',
+          "sec-ch-ua-mobile": "?0",
+          "sec-ch-ua-platform": '"macOS"',
+          "sec-fetch-dest": "empty",
+          "sec-fetch-mode": "cors",
+          "sec-fetch-site": "cross-site",
+          "user-agent":
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36",
+        },
+      }
+    );
+
+    return responseHash.data;
+  };
+
+  getHash = async (jwt, hash) => {
+    const responseTask = await axios.post(
+      "https://master-cdn.dl-api.com/api/json",
+      {
+        hash: hash,
+        jwt: jwt,
+      },
+      {
+        headers: {
+          authority: "master-cdn.dl-api.com",
+          accept: "application/json",
+          "accept-language": "en-US,en;q=0.9",
+          "content-type": "application/json",
+          origin: "https://apimate.net",
+          referer: "https://apimate.net/",
+          "sec-ch-ua":
+            '"Chromium";v="116", "Not)A;Brand";v="24", "Google Chrome";v="116"',
+          "sec-ch-ua-mobile": "?0",
+          "sec-ch-ua-platform": '"macOS"',
+          "sec-fetch-dest": "empty",
+          "sec-fetch-mode": "cors",
+          "sec-fetch-site": "cross-site",
+          "user-agent":
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36",
+        },
+      }
+    );
+    return responseTask.data;
+  };
+  task = async (taskId) => {
+    const finalResult = await axios.post(
+      "https://master-cdn.dl-api.com/api/json/task",
+      {
+        taskId: taskId,
+      },
+      {
+        headers: {
+          authority: "master-cdn.dl-api.com",
+          accept: "application/json",
+          "accept-language": "en-US,en;q=0.9",
+          "content-type": "application/json",
+          origin: "https://apimate.net",
+          referer: "https://apimate.net/",
+          "sec-ch-ua":
+            '"Chromium";v="116", "Not)A;Brand";v="24", "Google Chrome";v="116"',
+          "sec-ch-ua-mobile": "?0",
+          "sec-ch-ua-platform": '"macOS"',
+          "sec-fetch-dest": "empty",
+          "sec-fetch-mode": "cors",
+          "sec-fetch-site": "cross-site",
+          "user-agent":
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36",
+        },
+      }
+    );
+
+    return finalResult.data;
+  };
 }
 
 module.exports = Scraper;
