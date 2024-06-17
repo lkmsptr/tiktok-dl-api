@@ -99,24 +99,22 @@ class Scraper {
     return result;
   };
   y2mate = async (url) => {
-    const responseData = await axios.post(
-      "https://id-y2mate.com/mates/analyzeV2/ajax",
+    const response = await axios.post(
+      "https://tomp3.cc/api/ajax/search",
       new URLSearchParams({
-        k_query: url,
-        k_page: "home",
-        hl: "",
-        q_auto: "0",
+        query: url,
+        vt: "downloader",
       }),
       {
         headers: {
-          authority: "id-y2mate.com",
+          authority: "tomp3.cc",
           accept: "*/*",
           "accept-language": "en-US,en;q=0.9",
           "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
           cookie:
-            "_ga_79G1567X4W=GS1.1.1718543086.1.0.1718543086.0.0.0; _ga=GA1.1.349236730.1718543086",
-          origin: "https://id-y2mate.com",
-          referer: "https://id-y2mate.com/",
+            "_gid=GA1.2.623179894.1718585009; _ga_JRWV2N11YN=GS1.1.1718585009.1.1.1718585420.0.0.0; _ga=GA1.2.1344507009.1718585009; _gat_gtag_UA_207448667_1=1",
+          origin: "https://tomp3.cc",
+          referer: "https://tomp3.cc/youtube-downloader/6NsiA6GFAbU",
           "sec-ch-ua":
             '"Chromium";v="116", "Not)A;Brand";v="24", "Google Chrome";v="116"',
           "sec-ch-ua-mobile": "?0",
@@ -130,26 +128,26 @@ class Scraper {
         },
       }
     );
-    return responseData.data;
+    return response.data;
   };
 
   y2mateConvert = async (vid, key) => {
-    const responseConvert = await axios.post(
-      "https://id-y2mate.com/mates/convertV2/index",
+    const response = await axios.post(
+      "https://tomp3.cc/api/ajax/convert",
       new URLSearchParams({
         vid: vid,
         k: key,
       }),
       {
         headers: {
-          authority: "id-y2mate.com",
+          authority: "tomp3.cc",
           accept: "*/*",
           "accept-language": "en-US,en;q=0.9",
           "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
           cookie:
-            "_ga=GA1.1.349236730.1718543086; _ga_79G1567X4W=GS1.1.1718543086.1.1.1718543097.0.0.0",
-          origin: "https://id-y2mate.com",
-          referer: "https://id-y2mate.com/youtube/CL9InFVBJ20",
+            "_gid=GA1.2.623179894.1718585009; _ga_JRWV2N11YN=GS1.1.1718585009.1.1.1718585059.0.0.0; _ga=GA1.1.1344507009.1718585009",
+          origin: "https://tomp3.cc",
+          referer: "https://tomp3.cc/youtube-downloader/6NsiA6GFAbU",
           "sec-ch-ua":
             '"Chromium";v="116", "Not)A;Brand";v="24", "Google Chrome";v="116"',
           "sec-ch-ua-mobile": "?0",
@@ -163,7 +161,7 @@ class Scraper {
         },
       }
     );
-    return responseConvert.data;
+    return response.data;
   };
 }
 
