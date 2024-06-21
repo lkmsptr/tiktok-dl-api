@@ -1,8 +1,10 @@
 const express = require("express");
 const Api = require("./src/getData");
+const BatosApi = require("./src/Downloader");
 const cors = require("cors");
 const app = express();
 const api = new Api();
+const batosApi = new BatosApi();
 
 app.use(cors());
 app.use(express.urlencoded());
@@ -88,6 +90,38 @@ app.post("/api/youtube/get-hash", async (req, res) => {
   }
 });
 
+app.post("/api/all", async (req, res) => {
+  try {
+    const url = req.body.url;
+
+    if (!url) {
+      return res.status(400).json({ error: "url is required" });
+    }
+
+    // Panggil fungsi getData untuk mendapatkan data video TikTok
+    const data = await batosApi.getTaskId(url);
+    return res.json(data);
+  } catch (error) {
+    return res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+app.post("/api/all/task", async (req, res) => {
+  try {
+    const taskId = req.body.taskId;
+
+    if (!taskId) {
+      return res.status(400).json({ error: "taskId is required" });
+    }
+
+    // Panggil fungsi getData untuk mendapatkan data video TikTok
+    const data = await batosApi.task(taskId);
+    return res.json(data);
+  } catch (error) {
+    return res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
 app.listen(3001, () => {
-  console.log("Server is running on port 3000");
+  console.log("Server is running on port 3001");
 });
